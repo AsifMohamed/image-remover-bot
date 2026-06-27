@@ -1,0 +1,5 @@
+python-telegram-bot
+rembg
+gspread
+oauth2client
+google-auth
