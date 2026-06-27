@@ -1,5 +1,7 @@
 python-telegram-bot
 rembg
+onnxruntime
 gspread
 oauth2client
 google-auth
+Pillow
