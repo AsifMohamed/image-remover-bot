@@ -3,7 +3,7 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 
-from rembg import remove
+from rembg import remove, new_session
 from telegram import Update
 from telegram.ext import Application, ContextTypes, CommandHandler, MessageHandler, filters
 
@@ -30,7 +30,7 @@ sheet = client.open("BGRemoverUserlogs").sheet1
 # =========================
 os.makedirs("input", exist_ok=True)
 os.makedirs("output", exist_ok=True)
-
+session = new_session("u2netp")
 
 # =========================
 # LOG FUNCTION
@@ -80,7 +80,7 @@ async def handle_photo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     with open(input_path, "rb") as i:
         input_data = i.read()
 
-    output_data = remove(input_data)
+    output_data = remove(input_data, session=session)
 
     with open(output_path, "wb") as o:
         o.write(output_data)
