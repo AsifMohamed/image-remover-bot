@@ -26,6 +26,8 @@ scope = [
 creds_dict = json.loads(os.environ["CREDS_JSON"])
 creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 
+client = gspread.authorize(creds)
+
 sheet = client.open("BGRemoverUserlogs").sheet1
 
 # =========================
