@@ -1,5 +1,8 @@
 import os
 import gspread
+import os
+import json
+from oauth2client.service_account import ServiceAccountCredentials
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 
@@ -20,8 +23,8 @@ scope = [
     "https://www.googleapis.com/auth/drive"
 ]
 
-creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
-client = gspread.authorize(creds)
+creds_dict = json.loads(os.environ["CREDS_JSON"])
+creds = ServiceAccountCredentials.from_json_keyfile_dict(creds_dict, scope)
 
 sheet = client.open("BGRemoverUserlogs").sheet1
 
